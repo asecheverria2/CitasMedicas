@@ -19,10 +19,16 @@
                         <x-nav-link :href="route('pacientes.index')" >
                             {{ __('Tus Datos') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('appointments.index')">
+                            {{ __('Tus Citas') }}
+                        </x-nav-link>
                     @endif
                     @if(2==Auth::user()->role_id)
                         <x-nav-link :href="route('doctors.index')" >
                             {{ __('Tus Datos') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('appointments.index')">
+                            {{ __('Tus Citas') }}
                         </x-nav-link>
                     @endif
                 

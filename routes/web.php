@@ -20,6 +20,9 @@ Route::resource('especialidads', App\Http\Controllers\EspecialidadController::cl
 Route::resource('pacientes', App\Http\Controllers\PacienteController::class)->middleware(['auth']);
 Route::resource('docespes', App\Http\Controllers\DocespeController::class)->middleware(['auth']);
 Route::resource('doctors', App\Http\Controllers\DoctorController::class)->middleware(['auth']);
+Route::resource('appointments', App\Http\Controllers\AppointmentController::class)->middleware(['auth']);
+Route::get('appointments/create/{id}', 'App\Http\Controllers\AppointmentController@create')->name('appointments.create');
+Route::get('appointments/edit/{id}/{idPac}', 'App\Http\Controllers\AppointmentController@edit')->name('appointments.edit');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
