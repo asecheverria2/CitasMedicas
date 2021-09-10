@@ -42,27 +42,29 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($appointments as $appointment)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $appointment->paciente->user->name }}</td>
-											<td>{{ $appointment->doctor->user->name }}</td>
-											<td>{{ $appointment->especialidad->nombre }}</td>
-											<td>{{ $appointment->descripcion }}</td>
-											<td>{{ $appointment->fecha_hora }}</td>
+                                        @if($appointment->paciente->user->id==Auth::user()->id or $appointment->doctor->user->id==Auth::user()->id)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
+                                                
+                                                <td>{{ $appointment->paciente->user->name }}</td>
+                                                <td>{{ $appointment->doctor->user->name }}</td>
+                                                <td>{{ $appointment->especialidad->nombre }}</td>
+                                                <td>{{ $appointment->descripcion }}</td>
+                                                <td>{{ $appointment->fecha_hora }}</td>
 
-                                            <td>
-                                                <form action="{{ route('appointments.destroy',$appointment->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('appointments.show',$appointment->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
-                                                    @if(1==Auth::user()->role_id)
-                                                    <a class="btn btn-sm btn-success" href="{{ route('appointments.edit',['id' => $appointment->id, 'idPac' => Auth::user()->id]) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
-                                                    @endif
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Borrar</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    <form action="{{ route('appointments.destroy',$appointment->id) }}" method="POST">
+                                                        <a class="btn btn-sm btn-primary " href="{{ route('appointments.show',$appointment->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                        @if(1==Auth::user()->role_id)
+                                                        <a class="btn btn-sm btn-success" href="{{ route('appointments.edit',['id' => $appointment->id, 'idPac' => Auth::user()->id]) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                        @endif
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Borrar</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>
