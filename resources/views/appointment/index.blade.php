@@ -28,7 +28,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
-                                    <tr>
+                                    <tr class="table-dark">
                                         <th>No</th>
                                         
 										<th>Paciente</th>
